@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose
-  .connect('mongodb://root:root@mongo:27017/TodoDB?authSource=admin&w=1', {
+  .connect(process.env.MONGODB_URL, {
     auth: { authdb: 'admin' },
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-const routes = require('./api/routes/todoListRoutes'); // importing route
+const routes = require('./api/routes/routes'); // importing route
 routes(app); // register the route
 
 app.listen(port, () => {

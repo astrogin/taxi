@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A boilerplate for Node.js RESTful API with MongoDB",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "env-cmd -f ./.env nodemon server.js",
     "lint": "standard"
   },
   "keywords": [
