@@ -1,19 +1,19 @@
-const express = require('express');
+const express = require('express')
 
-const app = express();
+const app = express()
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 // eslint-disable-next-line no-unused-vars
-const Task = require('./api/models/todoListModel');
+const Task = require('./api/models/todoListModel')
 // created model loading here
 
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 
 // mongoose instance connection url connection
-mongoose.Promise = global.Promise;
+mongoose.Promise = global.Promise
 mongoose
   .connect(process.env.MONGODB_URL, {
     auth: { authdb: 'admin' },
@@ -21,19 +21,19 @@ mongoose
     useUnifiedTopology: true
   })
   .catch(err => {
-    console.log('Unable to connect', err);
-  });
+    console.log('Unable to connect', err)
+  })
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello');
-});
+  res.send('Hello')
+})
 
-const routes = require('./api/routes/routes'); // importing route
-routes(app); // register the route
+const routes = require('./api/routes/api') // importing route
+routes(app)
 
 app.listen(port, () => {
-  console.log('Node.js + MongoDB RESTful API server started on: ' + port);
-});
+  console.log('Node.js + MongoDB RESTful API server started on: ' + port)
+})

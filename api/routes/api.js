@@ -1,11 +1,10 @@
 'use strict';
 
 module.exports = function(app) {
-  const userRoutes = require('./user');
+  const router = require('./router');
   const todoList = require('../controllers/todoListController');
 
-  userRoutes(app);
-
+  app.use('/api/v1', router);
   // todoList Routes
   app
     .route('/tasks')

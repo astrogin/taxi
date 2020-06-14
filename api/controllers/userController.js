@@ -42,4 +42,21 @@ exports.logout = async (req, res) => {
   } catch (error) {
     res.status(500).send(error)
   }
+  try {
+    req.user.tokens.splice(0, req.user.tokens.length)
+    await req.user.save()
+    res.send()
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
+}
+
+exports.logoutEverywhere = async (req, res) => {
+  try {
+    req.user.tokens.splice(0, req.user.tokens.length)
+    await req.user.save()
+    res.send()
+  } catch (error) {
+    res.status(500).send({ error: error.message })
+  }
 }
